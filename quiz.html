@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>quiz1 quantity</title>
+
+	<style type="text/css">
+		body {background-image: url("https://orig00.deviantart.net/d60b/f/2012/080/c/2/coffee_in__code_out__by_mizuwebdesign-d4th7ky.jpg");}
+		button {-moz-box-shadow:inset 0px 1px 0px 0px #a6827e;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #a6827e;
+	box-shadow:inset 0px 1px 0px 0px #a6827e;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7d5d3b), color-stop(1, #634b30));
+	background:-moz-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
+	background:-webkit-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
+	background:-o-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
+	background:-ms-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
+	background:linear-gradient(to bottom, #7d5d3b 5%, #634b30 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d5d3b', endColorstr='#634b30',GradientType=0);
+	background-color:#7d5d3b;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #54381e;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #4d3534;}
+	h1 {text-align: center; font-family: Mistral; font-size: 80px;}
+	
+	</style>
+</head>
+<body>
+	<h1>Mauls COFFE</h1>
+	<table align="center">
+ <thead>
+  		<tr>
+  		<th>NO</th>
+   		<th>MENU</th>
+   			<th>PRICE(IDR)</th>
+   			<th colspan="2">Quantity</th>
+  			</tr>
+ 		</thead>
+
+ 		<tbody>
+
+  		<tr>
+  			<td>1.</td>
+   			<td>Coffe Aceh Gayo</td>
+   			<td>20.000</td>
+   			<td class="qty"><input type="number" id="amount1" name="quantity" value="0" min="0" max="100" oninput="validity.valid||(value='');"></td>
+   			<td><button onclick="item1()">Enter</button></td>
+ 	 	</tr>
+
+ 	 	<tr>
+  			<td>2.</td>
+   			<td>Coffe Solok</td>
+   			<td>15.000</td>
+   			<td class="qty"><input type="number" id="amount2" name="quantity" value="0" min="0" max="100" oninput="validity.valid||(value='');"></td>
+   			<td><button onclick="item2()">Enter</button></td>
+ 	 	</tr>
+
+ 	 	<tr>
+  			<td>3.</td>
+   			<td>Coffe Situjuah</td>
+   			<td>15.000</td>
+   			<td class="qty"><input type="number" id="amount3" name="quantity" value="0" min="0" max="100" oninput="validity.valid||(value='');"></td>
+   			<td><button onclick="item3()">Enter</button></td>
+ 	 	</tr>
+
+ 	 	<tr>
+  			<td>4.</td>
+   			<td>Coffe Latte</td>
+   			<td>35.000</td>
+   			<td class="qty"><input type="number" id="amount4" name="quantity" value="0" min="0" max="100" oninput="validity.valid||(value='');"></td>
+   			<td><button onclick="item4()">Enter</button></td>
+ 	 	</tr>
+
+ 	 	<tr>
+  			<td>5.</td>
+   			<td>GreenTea Latte</td>
+   			<td>35.000</td>
+   			<td class="qty"><input type="number" id="amount5" name="quantity" value="0" min="0" max="100" oninput="validity.valid||(value='');"></td>
+   			<td><button onclick="item5()">Enter</button></td>
+ 	 	</tr>
+
+ 	 	<tr>
+   			<th colspan="2" align="right">TOTAL HARGA:</th>
+   			<th colspan="2" algin="left"><div id="sutotal">0</div></th>
+  		</tr>
+
+  		<tr>
+   			<td colspan="4" align="right"><button id="submission" onclick="done()">Submit</button></td>
+  			</tr>
+ </tbody>
+ </table>
+
+ 	<table id="invo_tbl" align="center">
+
+	</table>
+				<script>
+ 					var sub=0,total=0;
+					var menu=[];
+
+					 for (var i = 0; i < 5; i++) 
+					{
+					 	menu[i]=0;
+ 					}
+
+ 					function item1()
+ 					{
+					menu[0] = document.getElementById("amount1").value;subtotal();
+ 					}
+
+ 					function item2()
+ 					{
+					menu[1] = document.getElementById("amount2").value;subtotal();
+					}
+
+ 					function item3()
+ 					{
+					menu[2] = document.getElementById("amount3").value;subtotal();
+					}
+
+					function item4()
+					{
+					menu[3] = document.getElementById("amount4").value;subtotal();
+					}
+
+					function item5()
+					{
+					menu[4] = document.getElementById("amount5").value;subtotal();
+					}
+
+
+			function subtotal()
+					{
+  					sub = (menu[0]*20000)+(menu[1]*15000)+(menu[2]*15000)+(menu[3]*35000+menu[4]*35000);
+  					document.getElementById("sutotal").innerHTML = sub;
+ 					}
+			function done()
+			{
+			document.getElementById("sutotal").innerHTML = 0;invoice();
+			}
+
+			function invoice()
+			{ 
+			document.getElementById("invo_tbl").innerHTML="<thead><tr><th>Order</th><th>Qty</th><th>Sub Total</th></tr></thead><tbody id='invoice1'></tbody>";
+  					for (var i = 0; i < 5; i++) 
+  		{
+   					if(menu[i]!=0)
+   			{
+					switch(i)
+					{
+    			case 0:
+    		document.getElementById("invoice1").innerHTML += "<tr><td>Coffe Aceh Gayo</td><td>"+menu[0]+"</td><td>"+menu[0]*20000+"</td></tr>"
+    				break;
+    			case 1:
+     		document.getElementById("invoice1").innerHTML += "<tr><td>Coffe Solok</td><td>"+menu[1]+"</td><td>"+menu[1]*15000+"</td></tr>"
+    				break;
+    			case 2:
+    		document.getElementById("invoice1").innerHTML += "<tr><td>Coffe Situjuah</td><td>"+menu[2]+"</td><td>"+menu[2]*15000+"</td></tr>"
+    				break;
+    			case 3:
+     		document.getElementById("invoice1").innerHTML += "<tr><td>Coffe Latte</td><td>"+menu[3]+"</td><td>"+menu[3]*35000+"</td></tr>"
+    				break;
+    			case 4:
+     		document.getElementById("invoice1").innerHTML += "<tr><td>GreenTea Latte</td><td>"+menu[3]+"</td><td>"+menu[4]*25000+"</td></tr>"
+    				break;
+
+    	}
+    
+  			 }
+  					}
+  document.getElementById("invoice1").innerHTML += "<tr><td></td><td>Total:</td><td>"+sub+"</td></tr>"
+ }
+
+ 				</script>
+
+</body>
+</html>
